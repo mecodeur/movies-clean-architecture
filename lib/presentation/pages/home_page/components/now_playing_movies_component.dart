@@ -10,8 +10,8 @@ import 'package:movies_clean_architecture_test/presentation/manager/home_movies_
 import '../../../../core/utils/app_constant.dart';
 import '../../../../core/utils/request_state.dart';
 
-class NowPlayingMoviesComponents extends StatelessWidget {
-  const NowPlayingMoviesComponents({Key? key}) : super(key: key);
+class NowPlayingMoviesComponent extends StatelessWidget {
+  const NowPlayingMoviesComponent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
