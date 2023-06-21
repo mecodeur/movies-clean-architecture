@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:movies_clean_architecture_test/core/utils/base_usecase.dart';
 
 import '../../../core/utils/request_state.dart';
 import '../../../domain/entities/movie_entity.dart';
@@ -21,7 +22,7 @@ class HomeMoviesBloc extends Bloc<HomeMoviesEvent, HomeMoviesState> {
       this.getTopRatedMoviesUseCase)
       : super(HomeMoviesState()) {
     on<GetNowPlayingMoviesEvent>((event, emit) async {
-      final result = await getNowPlayingMoviesUseCase();
+      final result = await getNowPlayingMoviesUseCase(NoParameter());
       result.fold((failure) {
         return emit(state.copyWith(
           nowPlayingMoviesState: RequestState.failure,
@@ -36,7 +37,7 @@ class HomeMoviesBloc extends Bloc<HomeMoviesEvent, HomeMoviesState> {
     });
 
     on<GetPopularMoviesEvent>((event, emit) async {
-      final result = await getPopularMoviesUseCase();
+      final result = await getPopularMoviesUseCase(NoParameter());
       result.fold((failure) {
         return emit(state.copyWith(
           popularMoviesState: RequestState.failure,
@@ -51,7 +52,7 @@ class HomeMoviesBloc extends Bloc<HomeMoviesEvent, HomeMoviesState> {
     });
 
     on<GetTopMoviesEvent>((event, emit) async {
-      final result = await getTopRatedMoviesUseCase();
+      final result = await getTopRatedMoviesUseCase(NoParameter());
       result.fold((failure) {
         return emit(state.copyWith(
           topRatedMoviesState: RequestState.failure,
