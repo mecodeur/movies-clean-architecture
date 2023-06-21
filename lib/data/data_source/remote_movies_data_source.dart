@@ -11,15 +11,15 @@ abstract class BaseRemoteMoviesDataSource {
   Future<List<MovieEntity>> getTopRatedMovies();
 }
 
-class RemoteMoviesDataSource extends BaseRemoteMoviesDataSource{
-
+class RemoteMoviesDataSource extends BaseRemoteMoviesDataSource {
   final ApiService apiService;
 
   RemoteMoviesDataSource(this.apiService);
 
   @override
-  Future<List<MovieEntity>> getNowPlayingMovies() async{
-    final Map<String, dynamic> data = await apiService.get(endPoint: '/movie/now_playing');
+  Future<List<MovieEntity>> getNowPlayingMovies() async {
+    final Map<String, dynamic> data =
+        await apiService.get(endPoint: '/movie/now_playing');
 
     List<MovieEntity> movies = getMovies(data);
 
@@ -27,8 +27,9 @@ class RemoteMoviesDataSource extends BaseRemoteMoviesDataSource{
   }
 
   @override
-  Future<List<MovieEntity>> getPopularMovies() async{
-    final Map<String, dynamic> data = await apiService.get(endPoint: '/movie/popular');
+  Future<List<MovieEntity>> getPopularMovies() async {
+    final Map<String, dynamic> data =
+        await apiService.get(endPoint: '/movie/popular');
 
     List<MovieEntity> movies = getMovies(data);
 
@@ -36,8 +37,9 @@ class RemoteMoviesDataSource extends BaseRemoteMoviesDataSource{
   }
 
   @override
-  Future<List<MovieEntity>> getTopRatedMovies() async{
-    final Map<String, dynamic> data = await apiService.get(endPoint: '/movie/top_rated');
+  Future<List<MovieEntity>> getTopRatedMovies() async {
+    final Map<String, dynamic> data =
+        await apiService.get(endPoint: '/movie/top_rated');
 
     List<MovieEntity> movies = getMovies(data);
 
@@ -47,7 +49,7 @@ class RemoteMoviesDataSource extends BaseRemoteMoviesDataSource{
   List<MovieEntity> getMovies(Map<String, dynamic> data) {
     List<MovieEntity> movies = [];
 
-    for(var mapMovies in data['results'] ){
+    for (var mapMovies in data['results']) {
       movies.add(MovieModel.fromJson(mapMovies));
     }
     return movies;

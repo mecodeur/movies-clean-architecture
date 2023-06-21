@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_clean_architecture_test/presentation/pages/home_page.dart';
+import 'package:movies_clean_architecture_test/presentation/pages/home_page/home_page.dart';
 
 void main() {
   runApp(const MyApp());

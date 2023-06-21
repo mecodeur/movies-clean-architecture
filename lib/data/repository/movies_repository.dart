@@ -6,7 +6,6 @@ import 'package:movies_clean_architecture_test/domain/entities/movie_entity.dart
 import 'package:movies_clean_architecture_test/domain/repository/base_movies_repository.dart';
 
 class MoviesRepository extends BaseMoviesRepository {
-
   final RemoteMoviesDataSource remoteMoviesDataSource;
 
   MoviesRepository(this.remoteMoviesDataSource);
@@ -14,7 +13,8 @@ class MoviesRepository extends BaseMoviesRepository {
   @override
   Future<Either<Failure, List<MovieEntity>>> getNowPlayingMovies() async {
     try {
-      final List<MovieEntity> result = await remoteMoviesDataSource.getPopularMovies();
+      final List<MovieEntity> result =
+          await remoteMoviesDataSource.getNowPlayingMovies();
       return right(result);
     } catch (e) {
       if (e is DioError) {
@@ -25,9 +25,10 @@ class MoviesRepository extends BaseMoviesRepository {
   }
 
   @override
-  Future<Either<Failure, List<MovieEntity>>> getPopularMovies() async{
+  Future<Either<Failure, List<MovieEntity>>> getPopularMovies() async {
     try {
-      final List<MovieEntity> result = await remoteMoviesDataSource.getPopularMovies();
+      final List<MovieEntity> result =
+          await remoteMoviesDataSource.getPopularMovies();
       return right(result);
     } catch (e) {
       if (e is DioError) {
@@ -38,9 +39,10 @@ class MoviesRepository extends BaseMoviesRepository {
   }
 
   @override
-  Future<Either<Failure, List<MovieEntity>>> getTopRatedMovies() async{
+  Future<Either<Failure, List<MovieEntity>>> getTopRatedMovies() async {
     try {
-      final List<MovieEntity> result = await remoteMoviesDataSource.getTopRatedMovies();
+      final List<MovieEntity> result =
+          await remoteMoviesDataSource.getTopRatedMovies();
       return right(result);
     } catch (e) {
       if (e is DioError) {
@@ -49,6 +51,4 @@ class MoviesRepository extends BaseMoviesRepository {
       return left(ServerFailure(e.toString()));
     }
   }
-
-
 }
