@@ -1,9 +1,7 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:movies_clean_architecture_test/core/utils/api_service.dart';
-import 'package:movies_clean_architecture_test/data/data_source/remote_movies_data_source.dart';
+import 'package:movies_clean_architecture_test/core/utils/service_locator.dart';
 import 'package:movies_clean_architecture_test/data/repository/movies_repository.dart';
 import 'package:movies_clean_architecture_test/domain/usecases/get_now_playing_movies_usecase.dart';
 import 'package:movies_clean_architecture_test/domain/usecases/get_popular_movies_usecase.dart';
@@ -13,21 +11,24 @@ import 'package:movies_clean_architecture_test/presentation/pages/home_page/comp
 import 'package:movies_clean_architecture_test/presentation/pages/home_page/components/popular_movies_component.dart';
 import 'package:movies_clean_architecture_test/presentation/pages/home_page/components/top_rated_movies_component.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class MovieHomePage extends StatelessWidget {
+  const MovieHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => HomeMoviesBloc(
         GetNowPlayingMoviesUseCase(
-          MoviesRepository(RemoteMoviesDataSource(ApiService(Dio()))),
+          getIt.get<MoviesRepository>(),
+          //MoviesRepository(RemoteMoviesDataSource(ApiService(Dio()))),
         ),
         GetPopularMoviesUseCase(
-          MoviesRepository(RemoteMoviesDataSource(ApiService(Dio()))),
+          getIt.get<MoviesRepository>(),
+         // MoviesRepository(RemoteMoviesDataSource(ApiService(Dio()))),
         ),
         GetTopRatedMoviesUseCase(
-          MoviesRepository(RemoteMoviesDataSource(ApiService(Dio()))),
+          getIt.get<MoviesRepository>(),
+          //MoviesRepository(RemoteMoviesDataSource(ApiService(Dio()))),
         ),
       )
         ..add(GetNowPlayingMoviesEvent())
