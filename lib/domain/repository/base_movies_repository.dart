@@ -12,7 +12,7 @@ abstract class BaseMoviesRepository {
 
   Future<Either<Failure, List<MovieEntity>>> getTopRatedMovies();
 
-  Future<Either<Failure, MovieDetailsEntity>> getMovieDetails(GetMovieDetailsParameter id);
+  Future<Either<Failure, MovieDetailsEntity>> getMovieDetails(MovieDetailsParameter id);
 
   Future<Either<Failure, MovieDetailsEntity>> getMovieRecommendations(int id);
 }
