@@ -15,7 +15,7 @@ class MovieDetailsModel extends MovieDetailsEntity {
   factory MovieDetailsModel.fromJson(Map<String, dynamic> jsonData) {
     return MovieDetailsModel(
       backdropPath: jsonData['backdrop_path'],
-      genres: List<GenresModel>.from(jsonData['genres'].map((e) => e)),
+      genres: List<GenresModel>.from(jsonData['genres'].map((e) => GenresModel.froJson(e))),
       id: jsonData['id'],
       overview: jsonData['overview'],
       releaseDate: jsonData['release_date'],

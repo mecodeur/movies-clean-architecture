@@ -45,7 +45,7 @@ class NowPlayingMoviesComponent extends StatelessWidget {
                         Navigator.push (
                           context,
                           MaterialPageRoute (
-                            builder: (BuildContext context) => const MovieDetailsPage(id: 1),
+                            builder: (BuildContext context) => MovieDetailsPage(id: item.id),
                           ),
                         );
                       },
