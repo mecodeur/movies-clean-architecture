@@ -10,7 +10,7 @@ import 'package:movies_clean_architecture_test/domain/usecases/get_popular_movie
 import 'package:movies_clean_architecture_test/domain/usecases/get_top_rated_movies_usecase.dart';
 import 'package:movies_clean_architecture_test/presentation/manager/home_movies_bloc/home_movies_bloc.dart';
 import 'package:movies_clean_architecture_test/presentation/pages/home_page/components/now_playing_movies_component.dart';
-import 'package:movies_clean_architecture_test/presentation/pages/home_page/components/top_movies_component.dart';
+import 'package:movies_clean_architecture_test/presentation/pages/home_page/components/popular_movies_component.dart';
 import 'package:movies_clean_architecture_test/presentation/pages/home_page/components/top_rated_movies_component.dart';
 
 class HomePage extends StatelessWidget {
@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              const TopMoviesComponent(),
+              const PopularMoviesComponent(),
               Container(
                 margin: const EdgeInsets.fromLTRB(
                   16.0,

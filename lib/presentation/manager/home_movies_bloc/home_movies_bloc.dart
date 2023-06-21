@@ -23,12 +23,12 @@ class HomeMoviesBloc extends Bloc<HomeMoviesEvent, HomeMoviesState> {
     on<GetNowPlayingMoviesEvent>((event, emit) async {
       final result = await getNowPlayingMoviesUseCase();
       result.fold((failure) {
-        return emit(HomeMoviesState(
+        return emit(state.copyWith(
           nowPlayingMoviesState: RequestState.failure,
           nowPlayingMoviesErrorMessage: failure.message,
         ));
       }, (movies) {
-        return emit(HomeMoviesState(
+        return emit(state.copyWith(
           nowPlayingMoviesState: RequestState.success,
           nowPlayingMovies: movies,
         ));
@@ -38,12 +38,12 @@ class HomeMoviesBloc extends Bloc<HomeMoviesEvent, HomeMoviesState> {
     on<GetPopularMoviesEvent>((event, emit) async {
       final result = await getPopularMoviesUseCase();
       result.fold((failure) {
-        return emit(HomeMoviesState(
+        return emit(state.copyWith(
           popularMoviesState: RequestState.failure,
           popularMoviesErrorMessage: failure.message,
         ));
       }, (movies) {
-        return emit(HomeMoviesState(
+        return emit(state.copyWith(
           popularMoviesState: RequestState.success,
           popularMovies: movies,
         ));
@@ -53,12 +53,12 @@ class HomeMoviesBloc extends Bloc<HomeMoviesEvent, HomeMoviesState> {
     on<GetTopMoviesEvent>((event, emit) async {
       final result = await getTopRatedMoviesUseCase();
       result.fold((failure) {
-        return emit(HomeMoviesState(
+        return emit(state.copyWith(
           topRatedMoviesState: RequestState.failure,
           topRatedMoviesErrorMessage: failure.message,
         ));
       }, (movies) {
-        return emit(HomeMoviesState(
+        return emit(state.copyWith(
           topRatedMoviesState: RequestState.success,
           topRatedMovies: movies,
         ));

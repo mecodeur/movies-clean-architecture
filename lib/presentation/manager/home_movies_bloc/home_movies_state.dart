@@ -27,7 +27,7 @@ class HomeMoviesState extends Equatable {
     this.topRatedMoviesErrorMessage = '',
   });
 
-  /*HomeMoviesState copyWith({
+  HomeMoviesState copyWith({
     List<MovieEntity>? nowPlayingMovies,
     RequestState? nowPlayingMoviesState,
     String? nowPlayingMoviesErrorMessage,
@@ -54,7 +54,7 @@ class HomeMoviesState extends Equatable {
       topRatedMoviesState: topRatedMoviesState ?? this.topRatedMoviesState,
       topRatedMoviesErrorMessage: topRatedMoviesErrorMessage ?? this.topRatedMoviesErrorMessage,
     );
-  }*/
+  }
 
   @override
   List<Object> get props =>

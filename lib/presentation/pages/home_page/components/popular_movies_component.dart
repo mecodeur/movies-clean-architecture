@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -8,14 +10,18 @@ import 'package:shimmer/shimmer.dart';
 import '../../../../core/utils/app_constant.dart';
 import '../../../../core/utils/request_state.dart';
 
-class TopMoviesComponent extends StatelessWidget {
-  const TopMoviesComponent({Key? key}) : super(key: key);
+class PopularMoviesComponent extends StatelessWidget {
+  const PopularMoviesComponent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeMoviesBloc, HomeMoviesState>(
+      buildWhen: (previous, current){
+        return previous.popularMoviesState != current.popularMoviesState;
+      },
       builder: (context, state) {
-        switch (state.nowPlayingMoviesState) {
+        log('>>>>>>>>>>>>>>>>> Build Popular Movies Bloc');
+        switch (state.popularMoviesState) {
           case RequestState.loading:
             return SizedBox(
                 height: 400, child: Center(child: CircularProgressIndicator()));
@@ -71,7 +77,7 @@ class TopMoviesComponent extends StatelessWidget {
                 height: 200,
                 child: Center(
                     child: Text(
-                  'State: ${state.topRatedMoviesErrorMessage}',
+                  'State: ${state.popularMoviesErrorMessage}',
                   style: TextStyle(color: Colors.white),
                 )));
         }
