@@ -21,7 +21,7 @@ class NowPlayingMoviesComponent extends StatelessWidget {
       builder: (context, state) {
         switch (state.nowPlayingMoviesState) {
           case RequestState.loading:
-            return SizedBox(
+            return const SizedBox(
                 height: 400, child: Center(child: CircularProgressIndicator()));
           case RequestState.success:
             return FadeIn(
@@ -119,12 +119,12 @@ class NowPlayingMoviesComponent extends StatelessWidget {
               ),
             );
           case RequestState.failure:
-            return Container(
+            return SizedBox(
                 height: 200,
                 child: Center(
                     child: Text(
                   'State: ${state.nowPlayingMoviesErrorMessage}',
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 )));
         }
       },
