@@ -1,5 +1,7 @@
 import 'package:movies_clean_architecture_test/core/utils/api_service.dart';
 import 'package:movies_clean_architecture_test/data/models/movie_details_model.dart';
+import 'package:movies_clean_architecture_test/data/models/movie_recommendation_model.dart';
+import 'package:movies_clean_architecture_test/domain/usecases/get_movies_recommendation_usecase.dart';
 
 import '../../domain/entities/movie_details_entity.dart';
 import '../../domain/usecases/get_movie_details_usecase.dart';
@@ -13,6 +15,9 @@ abstract class BaseRemoteMoviesDataSource {
   Future<List<MovieModel>> getTopRatedMovies();
 
   Future<MovieDetailsEntity> getMovieDetails(MovieDetailsParameter parameters);
+
+  Future<List<MovieRecommendationModel>> getMoviesRecommendation(
+      MoviesRecommendationParameters parameters);
 }
 
 class RemoteMoviesDataSource extends BaseRemoteMoviesDataSource {
@@ -59,6 +64,26 @@ class RemoteMoviesDataSource extends BaseRemoteMoviesDataSource {
     MovieDetailsModel movieDetails = MovieDetailsModel.fromJson(data);
 
     return movieDetails;
+  }
+
+  @override
+  Future<List<MovieRecommendationModel>> getMoviesRecommendation(
+      MoviesRecommendationParameters parameters) async {
+    final Map<String, dynamic> data = await apiService.get(
+        endPoint: '/movie/${parameters.id}/recommendations');
+
+    List<MovieRecommendationModel> moviesRecommendation = listMoviesRecommendation(data);
+
+    return moviesRecommendation;
+  }
+
+  List<MovieRecommendationModel> listMoviesRecommendation(Map<String, dynamic> data) {
+    List<MovieRecommendationModel> moviesRecommendation = [];
+    for (var mapMovieRecommendation in data['results']) {
+      moviesRecommendation
+          .add(MovieRecommendationModel.fromJson(mapMovieRecommendation));
+    }
+    return moviesRecommendation;
   }
 
   List<MovieModel> getMovies(Map<String, dynamic> data) {

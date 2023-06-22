@@ -1,6 +1,6 @@
 import 'package:movies_clean_architecture_test/domain/entities/genres_entity.dart';
 import 'package:movies_clean_architecture_test/domain/entities/movie_details_entity.dart';
-import 'package:movies_clean_architecture_test/domain/entities/recommendation_movie_entity.dart';
+import 'package:movies_clean_architecture_test/domain/entities/movie_recommendation_entity.dart';
 
 MovieDetailsEntity movieDetailDummy = const MovieDetailsEntity(
   backdropPath: "/nmGWzTLMXy9x7mKd8NKPLmHtWGa.jpg",
@@ -16,31 +16,31 @@ MovieDetailsEntity movieDetailDummy = const MovieDetailsEntity(
   voteAverage: 7.8,
 );
 
-List<RecommendationMovieEntity> recommendationDummy = [
-  const RecommendationMovieEntity(
+List<MovieRecommendationEntity> recommendationDummy = [
+  const MovieRecommendationEntity(
       backdropPath: "/ta17TltHGdZ5PZz6oUD3N5BRurb.jpg", id: 924482),
-  const RecommendationMovieEntity(
+  const MovieRecommendationEntity(
       backdropPath: "/ta17TltHGdZ5PZz6oUD3N5BRurb.jpg", id: 924482),
-  const RecommendationMovieEntity(
+  const MovieRecommendationEntity(
       backdropPath: "/ta17TltHGdZ5PZz6oUD3N5BRurb.jpg", id: 924482),
-  const RecommendationMovieEntity(
+  const MovieRecommendationEntity(
       backdropPath: "/ta17TltHGdZ5PZz6oUD3N5BRurb.jpg", id: 924482),
-  const RecommendationMovieEntity(
+  const MovieRecommendationEntity(
       backdropPath: "/ta17TltHGdZ5PZz6oUD3N5BRurb.jpg", id: 924482),
-  const RecommendationMovieEntity(
+  const MovieRecommendationEntity(
       backdropPath: "/ta17TltHGdZ5PZz6oUD3N5BRurb.jpg", id: 924482),
-  const RecommendationMovieEntity(
+  const MovieRecommendationEntity(
       backdropPath: "/ta17TltHGdZ5PZz6oUD3N5BRurb.jpg", id: 924482),
-  const RecommendationMovieEntity(
+  const MovieRecommendationEntity(
       backdropPath: "/ta17TltHGdZ5PZz6oUD3N5BRurb.jpg", id: 924482),
-  const RecommendationMovieEntity(
+  const MovieRecommendationEntity(
       backdropPath: "/ta17TltHGdZ5PZz6oUD3N5BRurb.jpg", id: 924482),
-  const RecommendationMovieEntity(
+  const MovieRecommendationEntity(
       backdropPath: "/ta17TltHGdZ5PZz6oUD3N5BRurb.jpg", id: 924482),
-  const RecommendationMovieEntity(
+  const MovieRecommendationEntity(
       backdropPath: "/ta17TltHGdZ5PZz6oUD3N5BRurb.jpg", id: 924482),
-  const RecommendationMovieEntity(
+  const MovieRecommendationEntity(
       backdropPath: "/ta17TltHGdZ5PZz6oUD3N5BRurb.jpg", id: 924482),
-  const RecommendationMovieEntity(
+  const MovieRecommendationEntity(
       backdropPath: "/ta17TltHGdZ5PZz6oUD3N5BRurb.jpg", id: 924482),
 ];

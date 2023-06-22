@@ -7,7 +7,7 @@ import 'package:movies_clean_architecture_test/core/utils/service_locator.dart';
 import 'package:movies_clean_architecture_test/data/repository/movies_repository.dart';
 import 'package:movies_clean_architecture_test/domain/entities/genres_entity.dart';
 import 'package:movies_clean_architecture_test/domain/entities/movie_details_entity.dart';
-import 'package:movies_clean_architecture_test/domain/entities/recommendation_movie_entity.dart';
+import 'package:movies_clean_architecture_test/domain/entities/movie_recommendation_entity.dart';
 import 'package:movies_clean_architecture_test/domain/usecases/get_movie_details_usecase.dart';
 import 'package:movies_clean_architecture_test/presentation/manager/details_movie_bloc/details_movie_bloc.dart';
 import 'package:shimmer/shimmer.dart';
@@ -38,7 +38,7 @@ class MovieDetailsPage extends StatelessWidget {
 
 class MovieDetailContent extends StatelessWidget {
   final MovieDetailsEntity movie;
-  final List<RecommendationMovieEntity> recommendations;
+  final List<MovieRecommendationEntity> recommendations;
 
   const MovieDetailContent({
     Key? key,
