@@ -6,14 +6,12 @@ import 'package:movies_clean_architecture_test/core/utils/app_constant.dart';
 import 'package:movies_clean_architecture_test/core/utils/service_locator.dart';
 import 'package:movies_clean_architecture_test/data/repository/movies_repository.dart';
 import 'package:movies_clean_architecture_test/domain/entities/genres_entity.dart';
-import 'package:movies_clean_architecture_test/domain/entities/movie_details_entity.dart';
-import 'package:movies_clean_architecture_test/domain/entities/movie_recommendation_entity.dart';
 import 'package:movies_clean_architecture_test/domain/usecases/get_movie_details_usecase.dart';
+import 'package:movies_clean_architecture_test/domain/usecases/get_movies_recommendation_usecase.dart';
 import 'package:movies_clean_architecture_test/presentation/manager/details_movie_bloc/details_movie_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../core/utils/request_state.dart';
-import '../dummy_recommendation.dart';
 
 class MovieDetailsPage extends StatelessWidget {
   final int id;
@@ -23,27 +21,21 @@ class MovieDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => DetailsMovieBloc(
-          GetMovieDetailsUseCase(getIt.get<MoviesRepository>()))
-        ..add(GetMovieDetailsEvent(id)),
-      child: Scaffold(
-        body: MovieDetailContent(
-          movie: movieDetailDummy,
-          recommendations: recommendationDummy,
-        ),
+      create: (BuildContext context) => DetailsMovieBloc(
+          GetMovieDetailsUseCase(getIt.get<MoviesRepository>()),
+          GetMoviesRecommendationUseCase(getIt.get<MoviesRepository>()))
+        ..add(GetMovieDetailsEvent(id))
+        ..add(GetRecommendationMoviesEvent(id)),
+      child: const Scaffold(
+        body: MovieDetailContent(),
       ),
     );
   }
 }
 
 class MovieDetailContent extends StatelessWidget {
-  final MovieDetailsEntity movie;
-  final List<MovieRecommendationEntity> recommendations;
-
   const MovieDetailContent({
     Key? key,
-    required this.movie,
-    required this.recommendations,
   }) : super(key: key);
 
   @override
@@ -52,10 +44,11 @@ class MovieDetailContent extends StatelessWidget {
       builder: (context, state) {
         switch (state.movieDetailsState) {
           case RequestState.loading:
-            return SizedBox(
+            return const SizedBox(
                 height: 400, child: Center(child: CircularProgressIndicator()));
           case RequestState.success:
             return CustomScrollView(
+              physics: const BouncingScrollPhysics(),
               key: const Key('movieDetailScrollView'),
               slivers: [
                 SliverAppBar(
@@ -185,7 +178,6 @@ class MovieDetailContent extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 SliverPadding(
                   padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 24.0),
                   sliver: SliverToBoxAdapter(
@@ -203,21 +195,95 @@ class MovieDetailContent extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Tab(text: 'More like this'.toUpperCase()),
-                SliverPadding(
-                  padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 24.0),
-                  sliver: _showRecommendations(),
-                ),
+                _showRecommendations(),
               ],
             );
           case RequestState.failure:
-            return Container(
+            return SizedBox(
                 height: 200,
                 child: Center(
                     child: Text(
                   'State: ${state.movieDetailsErrorMessage}',
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 )));
+        }
+      },
+    );
+  }
+
+  BlocBuilder<DetailsMovieBloc, DetailsMovieState> _showRecommendations() {
+    return BlocBuilder<DetailsMovieBloc, DetailsMovieState>(
+      builder: (context, state) {
+        switch (state.recommendationMoviesState) {
+          case RequestState.loading:
+            return SliverPadding(
+              padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 24.0),
+              sliver: SliverList(
+                delegate: SliverChildListDelegate([
+                  const SizedBox(
+                      height: 400,
+                      child: Center(child: CircularProgressIndicator()))
+                ]),
+              ),
+            );
+          case RequestState.success:
+            return SliverGrid(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  final recommendation = state.recommendationMovies[index];
+                  return FadeInUp(
+                    from: 20,
+                    duration: const Duration(milliseconds: 500),
+                    child: ClipRRect(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(4.0)),
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            AppConstant.imageUrl(recommendation.backdropPath!),
+                        placeholder: (context, url) => Shimmer.fromColors(
+                          baseColor: Colors.grey[850]!,
+                          highlightColor: Colors.grey[800]!,
+                          child: Container(
+                            height: 170.0,
+                            width: 120.0,
+                            decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                        height: 180.0,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
+                childCount: state.recommendationMovies.length,
+              ),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisSpacing: 8.0,
+                crossAxisSpacing: 8.0,
+                childAspectRatio: 0.7,
+                crossAxisCount: 3,
+              ),
+            );
+          case RequestState.failure:
+            return SliverPadding(
+              padding: const EdgeInsets.all(16.0),
+              sliver: SliverList(
+                delegate: SliverChildListDelegate([
+                  SizedBox(
+                      height: 200,
+                      child: Center(
+                          child: Text(
+                        'State: ${state.recommendationMoviesMessageError}',
+                        style: const TextStyle(color: Colors.white),
+                      )))
+                ]),
+              ),
+            );
         }
       },
     );
@@ -245,47 +311,5 @@ class MovieDetailContent extends StatelessWidget {
     } else {
       return '${minutes}m';
     }
-  }
-
-  Widget _showRecommendations() {
-    return SliverGrid(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) {
-          final recommendation = recommendations[index];
-          return FadeInUp(
-            from: 20,
-            duration: const Duration(milliseconds: 500),
-            child: ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(4.0)),
-              child: CachedNetworkImage(
-                imageUrl: AppConstant.imageUrl(recommendation.backdropPath!),
-                placeholder: (context, url) => Shimmer.fromColors(
-                  baseColor: Colors.grey[850]!,
-                  highlightColor: Colors.grey[800]!,
-                  child: Container(
-                    height: 170.0,
-                    width: 120.0,
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                  ),
-                ),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-                height: 180.0,
-                fit: BoxFit.cover,
-              ),
-            ),
-          );
-        },
-        childCount: recommendationDummy.length,
-      ),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        mainAxisSpacing: 8.0,
-        crossAxisSpacing: 8.0,
-        childAspectRatio: 0.7,
-        crossAxisCount: 3,
-      ),
-    );
   }
 }

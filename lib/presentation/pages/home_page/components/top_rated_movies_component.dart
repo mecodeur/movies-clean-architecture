@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +14,10 @@ class TopRatedMoviesComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeMoviesBloc, HomeMoviesState>(
-      buildWhen: (previous, current){
+      buildWhen: (previous, current) {
         return previous.topRatedMoviesState != current.topRatedMoviesState;
       },
       builder: (context, state) {
-        log('>>>>>>>>>>>>>>>>> Build Top Rated Movies Bloc');
         switch (state.topRatedMoviesState) {
           case RequestState.loading:
             return SizedBox(

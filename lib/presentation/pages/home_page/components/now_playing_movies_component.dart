@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -17,14 +15,11 @@ class NowPlayingMoviesComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeMoviesBloc, HomeMoviesState>(
-      buildWhen: (previous, current){
+      buildWhen: (previous, current) {
         return previous.nowPlayingMoviesState != current.nowPlayingMoviesState;
       },
       builder: (context, state) {
-
-        log('>>>>>>>>>>>>>>>>> Build Now Playing Movies Bloc');
-        switch(state.nowPlayingMoviesState){
-
+        switch (state.nowPlayingMoviesState) {
           case RequestState.loading:
             return SizedBox(
                 height: 400, child: Center(child: CircularProgressIndicator()));
@@ -38,14 +33,15 @@ class NowPlayingMoviesComponent extends StatelessWidget {
                   onPageChanged: (index, reason) {},
                 ),
                 items: state.nowPlayingMovies.map(
-                      (item) {
+                  (item) {
                     return GestureDetector(
                       key: const Key('openMovieMinimalDetail'),
                       onTap: () {
-                        Navigator.push (
+                        Navigator.push(
                           context,
-                          MaterialPageRoute (
-                            builder: (BuildContext context) => MovieDetailsPage(id: item.id),
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                MovieDetailsPage(id: item.id),
                           ),
                         );
                       },
@@ -127,12 +123,10 @@ class NowPlayingMoviesComponent extends StatelessWidget {
                 height: 200,
                 child: Center(
                     child: Text(
-                      'State: ${state.nowPlayingMoviesErrorMessage}',
-                      style: TextStyle(color: Colors.white),
-                    )));
+                  'State: ${state.nowPlayingMoviesErrorMessage}',
+                  style: TextStyle(color: Colors.white),
+                )));
         }
-
-
       },
     );
   }
