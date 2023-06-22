@@ -88,7 +88,7 @@ class NowPlayingMoviesComponent extends StatelessWidget {
                                       ),
                                       const SizedBox(width: 4.0),
                                       Text(
-                                        'Now Playing'.toUpperCase(),
+                                        AppConstant.nowPlaying.toUpperCase(),
                                         style: const TextStyle(
                                           fontSize: 16.0,
                                           color: Colors.white,

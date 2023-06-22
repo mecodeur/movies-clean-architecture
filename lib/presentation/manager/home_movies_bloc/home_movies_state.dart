@@ -17,11 +17,9 @@ class HomeMoviesState extends Equatable {
     this.nowPlayingMovies = const [],
     this.nowPlayingMoviesState = RequestState.loading,
     this.nowPlayingMoviesErrorMessage = '',
-
     this.popularMovies = const [],
     this.popularMoviesState = RequestState.loading,
     this.popularMoviesErrorMessage = '',
-
     this.topRatedMovies = const [],
     this.topRatedMoviesState = RequestState.loading,
     this.topRatedMoviesErrorMessage = '',
@@ -31,34 +29,32 @@ class HomeMoviesState extends Equatable {
     List<MovieEntity>? nowPlayingMovies,
     RequestState? nowPlayingMoviesState,
     String? nowPlayingMoviesErrorMessage,
-
     List<MovieEntity>? popularMovies,
     RequestState? popularMoviesState,
     String? popularMoviesErrorMessage,
-
     List<MovieEntity>? topRatedMovies,
     RequestState? topRatedMoviesState,
     String? topRatedMoviesErrorMessage,
-
-  }){
+  }) {
     return HomeMoviesState(
       nowPlayingMovies: nowPlayingMovies ?? this.nowPlayingMovies,
-      nowPlayingMoviesState: nowPlayingMoviesState ?? this.nowPlayingMoviesState,
-      nowPlayingMoviesErrorMessage: nowPlayingMoviesErrorMessage ?? this.nowPlayingMoviesErrorMessage,
-
+      nowPlayingMoviesState:
+          nowPlayingMoviesState ?? this.nowPlayingMoviesState,
+      nowPlayingMoviesErrorMessage:
+          nowPlayingMoviesErrorMessage ?? this.nowPlayingMoviesErrorMessage,
       popularMovies: popularMovies ?? this.popularMovies,
       popularMoviesState: popularMoviesState ?? this.popularMoviesState,
-      popularMoviesErrorMessage: popularMoviesErrorMessage ?? this.popularMoviesErrorMessage,
-
+      popularMoviesErrorMessage:
+          popularMoviesErrorMessage ?? this.popularMoviesErrorMessage,
       topRatedMovies: topRatedMovies ?? this.topRatedMovies,
       topRatedMoviesState: topRatedMoviesState ?? this.topRatedMoviesState,
-      topRatedMoviesErrorMessage: topRatedMoviesErrorMessage ?? this.topRatedMoviesErrorMessage,
+      topRatedMoviesErrorMessage:
+          topRatedMoviesErrorMessage ?? this.topRatedMoviesErrorMessage,
     );
   }
 
   @override
-  List<Object> get props =>
-      [
+  List<Object> get props => [
         nowPlayingMovies,
         nowPlayingMoviesState,
         nowPlayingMoviesErrorMessage,

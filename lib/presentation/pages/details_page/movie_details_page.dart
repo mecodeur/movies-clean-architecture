@@ -165,7 +165,7 @@ class MovieDetailContent extends StatelessWidget {
                           ),
                           const SizedBox(height: 8.0),
                           Text(
-                            'Genres: ${_showGenres(state.movieDetails!.genres)}',
+                              '${AppConstant.genres}: ${_showGenres(state.movieDetails!.genres)}',
                             style: const TextStyle(
                               color: Colors.white70,
                               fontSize: 12.0,

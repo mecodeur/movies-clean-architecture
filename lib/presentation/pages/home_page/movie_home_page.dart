@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:movies_clean_architecture_test/core/utils/app_constant.dart';
 import 'package:movies_clean_architecture_test/core/utils/service_locator.dart';
 import 'package:movies_clean_architecture_test/data/repository/movies_repository.dart';
 import 'package:movies_clean_architecture_test/domain/usecases/get_now_playing_movies_usecase.dart';
@@ -24,7 +25,7 @@ class MovieHomePage extends StatelessWidget {
         ),
         GetPopularMoviesUseCase(
           getIt.get<MoviesRepository>(),
-         // MoviesRepository(RemoteMoviesDataSource(ApiService(Dio()))),
+          // MoviesRepository(RemoteMoviesDataSource(ApiService(Dio()))),
         ),
         GetTopRatedMoviesUseCase(
           getIt.get<MoviesRepository>(),
@@ -47,7 +48,7 @@ class MovieHomePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Popular",
+                      AppConstant.popular,
                       style: GoogleFonts.poppins(
                         fontSize: 19,
                         fontWeight: FontWeight.w500,
@@ -64,7 +65,7 @@ class MovieHomePage extends StatelessWidget {
                         child: Row(
                           children: const [
                             Text(
-                              'See More',
+                              AppConstant.seeMore,
                               style: TextStyle(
                                 color: Colors.white,
                               ),
@@ -92,7 +93,7 @@ class MovieHomePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Top Rated",
+                      AppConstant.topRated,
                       style: GoogleFonts.poppins(
                         fontSize: 19,
                         fontWeight: FontWeight.w500,
@@ -109,7 +110,7 @@ class MovieHomePage extends StatelessWidget {
                         child: Row(
                           children: const [
                             Text(
-                              'See More',
+                              AppConstant.seeMore,
                               style: TextStyle(
                                 color: Colors.white,
                               ),

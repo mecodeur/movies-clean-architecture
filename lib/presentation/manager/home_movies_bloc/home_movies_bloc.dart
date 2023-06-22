@@ -20,7 +20,7 @@ class HomeMoviesBloc extends Bloc<HomeMoviesEvent, HomeMoviesState> {
 
   HomeMoviesBloc(this.getNowPlayingMoviesUseCase, this.getPopularMoviesUseCase,
       this.getTopRatedMoviesUseCase)
-      : super(HomeMoviesState()) {
+      : super(const HomeMoviesState()) {
     on<GetNowPlayingMoviesEvent>((event, emit) async {
       final result = await getNowPlayingMoviesUseCase(NoParameter());
       result.fold((failure) {

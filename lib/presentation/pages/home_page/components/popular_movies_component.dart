@@ -20,7 +20,7 @@ class PopularMoviesComponent extends StatelessWidget {
       builder: (context, state) {
         switch (state.popularMoviesState) {
           case RequestState.loading:
-            return SizedBox(
+            return const SizedBox(
                 height: 400, child: Center(child: CircularProgressIndicator()));
           case RequestState.success:
             return FadeIn(
@@ -71,12 +71,12 @@ class PopularMoviesComponent extends StatelessWidget {
               ),
             );
           case RequestState.failure:
-            return Container(
+            return SizedBox(
                 height: 200,
                 child: Center(
                     child: Text(
                   'State: ${state.popularMoviesErrorMessage}',
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 )));
         }
       },

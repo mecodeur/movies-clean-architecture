@@ -14,8 +14,9 @@ abstract class BaseMoviesRepository {
 
   Future<Either<Failure, List<MovieEntity>>> getTopRatedMovies();
 
-  Future<Either<Failure, MovieDetailsEntity>> getMovieDetails(MovieDetailsParameter id);
+  Future<Either<Failure, MovieDetailsEntity>> getMovieDetails(
+      MovieDetailsParameter id);
 
-  Future<Either<Failure, List<MovieRecommendationEntity>>> getMoviesRecommendation(MoviesRecommendationParameters id);
+  Future<Either<Failure, List<MovieRecommendationEntity>>>
+      getMoviesRecommendation(MoviesRecommendationParameters id);
 }
-

@@ -15,9 +15,9 @@ class DetailsMovieBloc extends Bloc<DetailsMovieEvent, DetailsMovieState> {
   final GetMovieDetailsUseCase getMovieDetailsUseCase;
   final GetMoviesRecommendationUseCase getMoviesRecommendationUseCase;
 
-  DetailsMovieBloc(this.getMovieDetailsUseCase, this.getMoviesRecommendationUseCase) : super(DetailsMovieState()) {
-
-
+  DetailsMovieBloc(
+      this.getMovieDetailsUseCase, this.getMoviesRecommendationUseCase)
+      : super(const DetailsMovieState()) {
     on<GetMovieDetailsEvent>((event, emit) async {
       final result =
           await getMovieDetailsUseCase(MovieDetailsParameter(id: event.id));
@@ -45,6 +45,5 @@ class DetailsMovieBloc extends Bloc<DetailsMovieEvent, DetailsMovieState> {
             recommendationMovies: moviesRecommendation));
       });
     });
-
   }
 }

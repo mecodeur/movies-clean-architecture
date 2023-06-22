@@ -19,27 +19,28 @@ class DetailsMovieState extends Equatable {
   });
 
   DetailsMovieState copyWith({
-      MovieDetailsEntity? movieDetails,
-      RequestState? movieDetailsState,
-      String? movieDetailsErrorMessage,
-
-      List<MovieRecommendationEntity>? recommendationMovies,
-      RequestState? recommendationMoviesState,
-      String? recommendationMoviesMessageError,
-}){
+    MovieDetailsEntity? movieDetails,
+    RequestState? movieDetailsState,
+    String? movieDetailsErrorMessage,
+    List<MovieRecommendationEntity>? recommendationMovies,
+    RequestState? recommendationMoviesState,
+    String? recommendationMoviesMessageError,
+  }) {
     return DetailsMovieState(
-        movieDetails: movieDetails ?? this.movieDetails,
+      movieDetails: movieDetails ?? this.movieDetails,
       movieDetailsState: movieDetailsState ?? this.movieDetailsState,
-      movieDetailsErrorMessage: movieDetailsErrorMessage ?? this.movieDetailsErrorMessage,
+      movieDetailsErrorMessage:
+          movieDetailsErrorMessage ?? this.movieDetailsErrorMessage,
       recommendationMovies: recommendationMovies ?? this.recommendationMovies,
-      recommendationMoviesState: recommendationMoviesState ?? this.recommendationMoviesState,
-      recommendationMoviesMessageError: recommendationMoviesMessageError ?? this.recommendationMoviesMessageError,
+      recommendationMoviesState:
+          recommendationMoviesState ?? this.recommendationMoviesState,
+      recommendationMoviesMessageError: recommendationMoviesMessageError ??
+          this.recommendationMoviesMessageError,
     );
   }
 
   @override
-  List<Object?> get props =>
-      [
+  List<Object?> get props => [
         movieDetails,
         movieDetailsState,
         movieDetailsErrorMessage,

@@ -5,10 +5,9 @@ abstract class DetailsMovieEvent extends Equatable {
 }
 
 class GetMovieDetailsEvent extends DetailsMovieEvent {
-
   final int id;
 
-  GetMovieDetailsEvent(this.id);
+  const GetMovieDetailsEvent(this.id);
 
   @override
   List<Object> get props => [id];
