@@ -30,6 +30,7 @@ class RemoteMoviesDataSource extends BaseRemoteMoviesDataSource {
     final Map<String, dynamic> data =
         await apiService.get(endPoint: '/movie/now_playing');
 
+    //final  m = List<MovieModel>.from((data['results'] as List).map((e) => MovieModel.fromJson(e)));
     List<MovieModel> movies = getMovies(data);
 
     return movies;
