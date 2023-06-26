@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:movies_clean_architecture_test/core/utils/app_constant.dart';
 import 'package:movies_clean_architecture_test/core/utils/service_locator.dart';
 import 'package:movies_clean_architecture_test/data/repository/movies_repository.dart';
 import 'package:movies_clean_architecture_test/domain/usecases/get_now_playing_movies_usecase.dart';
@@ -11,6 +10,7 @@ import 'package:movies_clean_architecture_test/presentation/manager/home_movies_
 import 'package:movies_clean_architecture_test/presentation/pages/home_page/components/now_playing_movies_component.dart';
 import 'package:movies_clean_architecture_test/presentation/pages/home_page/components/popular_movies_component.dart';
 import 'package:movies_clean_architecture_test/presentation/pages/home_page/components/top_rated_movies_component.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MovieHomePage extends StatelessWidget {
   const MovieHomePage({Key? key}) : super(key: key);
@@ -48,7 +48,7 @@ class MovieHomePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppConstant.popular,
+                      AppLocalizations.of(context)!.popular,
                       style: GoogleFonts.poppins(
                         fontSize: 19,
                         fontWeight: FontWeight.w500,
@@ -63,9 +63,9 @@ class MovieHomePage extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
-                          children: const [
+                          children:  [
                             Text(
-                              AppConstant.seeMore,
+                              AppLocalizations.of(context)!.seeMore,
                               style: TextStyle(
                                 color: Colors.white,
                               ),
@@ -93,7 +93,7 @@ class MovieHomePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      AppConstant.topRated,
+                      AppLocalizations.of(context)!.topRated,
                       style: GoogleFonts.poppins(
                         fontSize: 19,
                         fontWeight: FontWeight.w500,
@@ -108,9 +108,9 @@ class MovieHomePage extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
-                          children: const [
+                          children: [
                             Text(
-                              AppConstant.seeMore,
+                              AppLocalizations.of(context)!.seeMore,
                               style: TextStyle(
                                 color: Colors.white,
                               ),

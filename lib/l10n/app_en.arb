@@ -1,3 +1,7 @@
 {
-  "nowPlaying": "Now Playing"
+  "nowPlaying": "Now Playing",
+  "popular": "Popular",
+  "seeMore": "See More",
+  "topRated": "Top Rated",
+  "moreLikeThis": "More Like This"
 }

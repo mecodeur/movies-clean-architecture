@@ -10,7 +10,7 @@ import 'package:movies_clean_architecture_test/domain/usecases/get_movie_details
 import 'package:movies_clean_architecture_test/domain/usecases/get_movies_recommendation_usecase.dart';
 import 'package:movies_clean_architecture_test/presentation/manager/details_movie_bloc/details_movie_bloc.dart';
 import 'package:shimmer/shimmer.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../core/utils/request_state.dart';
 
 class MovieDetailsPage extends StatelessWidget {
@@ -185,7 +185,7 @@ class MovieDetailContent extends StatelessWidget {
                       from: 20,
                       duration: const Duration(milliseconds: 500),
                       child: Text(
-                        'More like this'.toUpperCase(),
+                        AppLocalizations.of(context)!.moreLikeThis.toUpperCase(),
                         style: const TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.w500,
