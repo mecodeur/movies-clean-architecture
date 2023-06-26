@@ -1,3 +1,7 @@
 {
-  "nowPlaying": "Film regardé récemment"
+  "nowPlaying": "Film regardé récemment",
+  "popular": "Populaire",
+  "seeMore": "Voir plus",
+  "topRated": "Les mieux notés",
+  "moreLikeThis": "Plus comme ça"
 }

@@ -18,16 +18,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: AppConstant.appName,
-      locale: const Locale('fr'),
-      localizationsDelegates:  const [
+      locale: const Locale('ar'),
+      localizationsDelegates:   [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const [
+      supportedLocales:  [
         Locale('en'),
         Locale('fr'),
+        Locale('ar'),
       ],
       theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: Colors.black),
       home: const MovieHomePage(),
