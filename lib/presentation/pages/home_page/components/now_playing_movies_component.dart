@@ -8,6 +8,8 @@ import 'package:movies_clean_architecture_test/presentation/pages/details_page/m
 
 import '../../../../core/utils/app_constant.dart';
 import '../../../../core/utils/request_state.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class NowPlayingMoviesComponent extends StatelessWidget {
   const NowPlayingMoviesComponent({Key? key}) : super(key: key);
@@ -88,7 +90,8 @@ class NowPlayingMoviesComponent extends StatelessWidget {
                                       ),
                                       const SizedBox(width: 4.0),
                                       Text(
-                                        AppConstant.nowPlaying.toUpperCase(),
+                                        AppLocalizations.of(context)!.nowPlaying,
+                                        //AppConstant.nowPlaying.toUpperCase(),
                                         style: const TextStyle(
                                           fontSize: 16.0,
                                           color: Colors.white,
