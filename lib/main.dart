@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: AppConstant.appName,
-      locale: const Locale('ar'),
+      //locale: const Locale('ar'),
       localizationsDelegates:   [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
