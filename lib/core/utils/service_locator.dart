@@ -7,7 +7,6 @@ import 'package:movies_clean_architecture_test/data/repository/movies_repository
 final getIt = GetIt.instance;
 
 void setupServiceLocator() {
-
   getIt.registerSingleton(ApiService(Dio()));
   getIt.registerSingleton<MoviesRepository>(
       MoviesRepository(RemoteMoviesDataSource(getIt.get<ApiService>())));

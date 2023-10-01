@@ -73,12 +73,14 @@ class RemoteMoviesDataSource extends BaseRemoteMoviesDataSource {
     final Map<String, dynamic> data = await apiService.get(
         endPoint: '/movie/${parameters.id}/recommendations');
 
-    List<MovieRecommendationModel> moviesRecommendation = listMoviesRecommendation(data);
+    List<MovieRecommendationModel> moviesRecommendation =
+        listMoviesRecommendation(data);
 
     return moviesRecommendation;
   }
 
-  List<MovieRecommendationModel> listMoviesRecommendation(Map<String, dynamic> data) {
+  List<MovieRecommendationModel> listMoviesRecommendation(
+      Map<String, dynamic> data) {
     List<MovieRecommendationModel> moviesRecommendation = [];
     for (var mapMovieRecommendation in data['results']) {
       moviesRecommendation

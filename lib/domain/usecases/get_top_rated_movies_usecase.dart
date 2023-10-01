@@ -5,13 +5,15 @@ import 'package:movies_clean_architecture_test/domain/repository/base_movies_rep
 
 import '../entities/movie_entity.dart';
 
-class GetTopRatedMoviesUseCase extends BaseUseCase<List<MovieEntity>, NoParameter> {
+class GetTopRatedMoviesUseCase
+    extends BaseUseCase<List<MovieEntity>, NoParameter> {
   final BaseMoviesRepository baseMoviesRepository;
 
   GetTopRatedMoviesUseCase(this.baseMoviesRepository);
 
   @override
-  Future<Either<Failure, List<MovieEntity>>> call(NoParameter parameters) async {
+  Future<Either<Failure, List<MovieEntity>>> call(
+      NoParameter parameters) async {
     return await baseMoviesRepository.getTopRatedMovies();
   }
 }

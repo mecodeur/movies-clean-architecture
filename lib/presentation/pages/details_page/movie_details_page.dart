@@ -165,7 +165,7 @@ class MovieDetailContent extends StatelessWidget {
                           ),
                           const SizedBox(height: 8.0),
                           Text(
-                              '${AppConstant.genres}: ${_showGenres(state.movieDetails!.genres)}',
+                            '${AppConstant.genres}: ${_showGenres(state.movieDetails!.genres)}',
                             style: const TextStyle(
                               color: Colors.white70,
                               fontSize: 12.0,
@@ -185,7 +185,9 @@ class MovieDetailContent extends StatelessWidget {
                       from: 20,
                       duration: const Duration(milliseconds: 500),
                       child: Text(
-                        AppLocalizations.of(context)!.moreLikeThis.toUpperCase(),
+                        AppLocalizations.of(context)!
+                            .moreLikeThis
+                            .toUpperCase(),
                         style: const TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.w500,

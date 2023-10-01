@@ -1,7 +1,7 @@
 import 'package:movies_clean_architecture_test/domain/entities/movie_entity.dart';
 
 class MovieModel extends MovieEntity {
-  MovieModel({
+  const MovieModel({
     required super.id,
     required super.title,
     required super.backdropPath,

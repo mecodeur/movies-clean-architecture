@@ -63,14 +63,14 @@ class MovieHomePage extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
-                          children:  [
+                          children: [
                             Text(
                               AppLocalizations.of(context)!.seeMore,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.white,
                               ),
                             ),
-                            Icon(
+                            const Icon(
                               Icons.arrow_forward_ios,
                               size: 16.0,
                             )
@@ -111,11 +111,11 @@ class MovieHomePage extends StatelessWidget {
                           children: [
                             Text(
                               AppLocalizations.of(context)!.seeMore,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.white,
                               ),
                             ),
-                            Icon(
+                            const Icon(
                               Icons.arrow_forward_ios,
                               size: 16.0,
                             )
